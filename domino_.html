@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+*{margin:0;padding:0;box-sizing: border-box;}
+ul, ol, li{list-style:none;}
+a{text-decoration:none;}
+body{width:100%;height:3000px;position:relative;background:#fff;}
+.wrap{position:relative;width:100%;height:auto;}
+
+.top1{width:1100px;height:100px;position:relative;margin:0 auto;line-height:100px;}
+.top1 .butt1{width:50px;height:50px;position:absolute;top:23px;left:20px;background:lightblue;}
+.butt1 a{
+    display:block;background:url(images/spr_btn.png) 12px -25px;
+    width:40px;height:40px;
+}
+.cont1{width:320px;height:30%;position:absolute;top:35px;left:80px;text-align:center;}
+.cont1>ul{width:100%;height:100%;position:relative;top:-5px;}
+.cont1>ul>li{
+    width:93px;height:25px;float:left;
+    line-height:25;background:rgba(0,0,0,0.1);
+    margin:5px;border-radius:50px;box-shadow:inset 2px 2px 2px rgba(0,0,0,0.2);
+}
+.cont1>ul>li>a{display:block;color:dimgray;font-size:10px;z-index: 9999;}
+
+.logo{width:245px;height:57px;margin:0 auto;margin-top:10px;background:url(images/logo1.png);}
+
+.cont1_1{position:absolute;left:70%;top:35px;}
+
+.cart{width:50px;height:50px;position:absolute;right:20px;top:23px;background:lightskyblue;}
+.cart a{display:block;width:40px;height:40px;background:url(images/spr_btn.png) -35px 8px;}
+
+.nav{width:1119px;height:56px;background:red url(images/bg_gnb.png);position:relative;top:30px;margin:0 auto;}
+.nav ul{width:90%;height:100%;margin:0 auto;}
+.nav ul li{width:140px;height:56px;float:left;margin-left:1px;}
+.nav ul li a{
+    display:block;width:100%;height:100%;
+    line-height:56px;color:#fff;text-align:center;
+    transition:all 1s;
+}
+.nav>ul>li:hover>a{border-bottom:4px solid red;color:red;}
+
+.smenu{
+    margin-top:20px;background:#fff;height:0;
+    border-radius:10px;box-shadow:2px 2px 6px gray;
+    transition:height .4s ease-out;overflow:hidden;}
+.nav>ul>li:hover>.smenu{height:180px;}
+.smenu li a{color:#000 !important;}
+.smenu li:hover a{display:block;color:#fff !important;background-color:red;}
+</style>
+</head>
+<body>
+<div class="wrap"> 
+<div class="top1"> 
+<div class="butt1"><a href="#"></a></div>
+<div class="cont1"> 
+<ul>
+<li><a href="#">English</a></li>
+<li><a href="#">쿠폰</a></li>
+<li><a href="#">주문조회</a></li>
+</ul>
+</div>
+<div class="logo"><a href="#"></a></div>
+<div class="cont1 cont1_1"> 
+<ul>
+<li><a href="#">로그인</a></li>
+<li><a href="#">회원가입</a></li>
+</ul>
+</div>
+<div class="cart"><a href="#"></a></div>
+</div>
+<div class="nav"> 
+<ul>
+<li><a href="domino_sub1.html">피자</a>
+<ol class="smenu">
+<li><a href="#">슈퍼시드</a></li>
+<li><a href="#">프리미엄</a></li>
+<li><a href="#">클래식</a></li>
+</ol>
+</li>
+<li><a href="domino_sub2.html">사이드디시</a>
+<ol class="smenu">
+<li><a href="#">사이드디시</a></li>
+<li><a href="#">음료</a></li>
+<li><a href="#">피클&소스</a></li>
+</ol>
+</li>
+<li><a href="#">특가제품</a></li>
+<li><a href="#">내맘대로 피자</a>
+<ol class="smenu">
+<li><a href="#">하프&하프</a></li>
+<li><a href="#">마이키친</a></li>
+<li><a href="#">추가토핑안내</a></li>
+</ol>
+</li>
+<li><a href="#">이벤트&할인</a>
+<ol class="smenu">
+<li><a href="#">오늘의이벤트</a></li>
+<li><a href="#">마니아혜택</a></li>
+<li><a href="#">할인&제휴</a></li>
+</ol>
+</li>		
+<li><a href="#">E-쿠폰&상품권</a>
+<ol class="smenu">
+<li><a href="#">E쿠폰</a></li>
+<li><a href="#">상품권</a></li>
+</ol>
+</li>		
+<li><a href="#">선물하기</a>
+<ol class="smenu">
+<li><a href="#">전체</a></li>
+<li><a href="#">지류상품권</a></li>
+<li><a href="#">모바일상품권</a></li>
+</ol>
+</li>		
+</ul>
+</div>
+</div>
+</body>
+</html>
