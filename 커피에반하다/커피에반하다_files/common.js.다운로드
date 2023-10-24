@@ -1,0 +1,229 @@
+jQuery(function($){
+	new WOW().init();
+
+	var autoHypenPhone = function(str){
+	      str = str.replace(/[^0-9]/g, '');
+	      var tmp = '';
+	      if( str.length < 4){
+	          return str;
+	      }else if(str.length < 7){
+	          tmp += str.substr(0, 3);
+	          tmp += '-';
+	          tmp += str.substr(3);
+	          return tmp;
+	      }else if(str.length < 11){
+	          tmp += str.substr(0, 3);
+	          tmp += '-';
+	          tmp += str.substr(3, 3);
+	          tmp += '-';
+	          tmp += str.substr(6);
+	          return tmp;
+	      }else{
+	          tmp += str.substr(0, 3);
+	          tmp += '-';
+	          tmp += str.substr(3, 4);
+	          tmp += '-';
+	          tmp += str.substr(7);
+	          return tmp;
+	      }
+
+	      return str;
+	}
+
+
+	var phoneNum = document.getElementById('quick_tel');
+
+	phoneNum.onkeyup = function(){
+	  console.log(this.value);
+	  this.value = autoHypenPhone( this.value ) ;
+	}
+
+
+	var UserAgent = navigator.userAgent;
+	if(UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null) {
+		//mobile
+		$('#open-button').on("click",function(){
+            if($(this).attr('class')=='act')
+            {
+                $(this).removeClass('act');
+                $(".roof").fadeOut(300);
+                $(".down-menu-bg").removeClass('navi_act');
+            }
+            else
+            {
+                $(this).addClass('act');
+                $(".roof").fadeIn(300);
+                $(".down-menu-bg").addClass('navi_act');
+            }
+        });
+
+        $(".roof").on("click",function() {
+            $("#open-button").trigger("click");
+        });
+
+		$('.down-menu-wrap .down-menu>li>a').click(function(e){
+			e.preventDefault();
+			if($(this).attr('class')=='act'){
+	            $(this).parents('li').removeClass('act');
+				$(this).parents('li').find('ul').slideUp();
+
+	        }else{
+				$('.down-menu-wrap .down-menu>li').removeClass('act');
+	            $(this).parents('li').addClass('act');
+				$('.down-menu-wrap .down-menu>li>ul').slideUp();
+				$(this).parents('li').find('ul').slideDown();
+	        }
+		});
+	}else{
+		//pc
+		//다운메뉴 오버
+		$(".down-menu>li").hover(function(){
+			var $key = $(this).index();
+			// console.log($key);
+			$(".main-menu li").eq($key).addClass("act2");
+			$(".main-menu li").removeClass("act");
+		},function(){
+			var $key = $(this).index();
+			$(".main-menu li").eq($key).removeClass("act2");
+
+			$(".main-menu li").each(function(){
+				if($(this).find('a').html()==$('.sub-header-wrap .sub-header .txt1').html())
+				{
+					$(this).addClass("act");
+				}
+			});
+		});
+
+		//메인메뉴 엑티브
+		$(".main-menu li").each(function(){
+			if($(this).find('a').html()==$('.sub-header-wrap .sub-header .txt1').html())
+			{
+				$(this).addClass("act");
+			}
+		});
+
+		$(".main-menu").hover(function(){
+			$(".main-menu li").removeClass("act");
+		},function(){
+			$(".main-menu li").each(function(){
+				if($(this).find('a').html()==$('.sub-header-wrap .sub-header .txt1').html())
+				{
+					$(this).addClass("act");
+				}
+			});
+		});
+	}
+
+
+	$(".ready").click(function(e){
+		e.preventDefault();
+		alert("준비중입니다.");
+		return false;
+	});
+
+	$(".preview-btn").click(function(e){
+		e.preventDefault();
+		alert("준비중입니다.");
+		return false;
+	});
+
+	//다운메뉴 슬라이드
+	$(".down-menu-event").slick({
+		arrows: false,
+		fade: false,
+		dots : false
+	});
+
+
+
+	//서브메뉴 엑티브
+	$(".sub-menu li a").each(function(){
+		if($(this).html()==$('.sub_key').html())
+		{
+			$(this).addClass("act");
+		}
+	});
+
+	//개인정보 팝업
+	$(".privacy").magnificPopup({
+		mainClass: 'mfp-fade',
+		showCloseBtn : true
+	});
+
+
+	//시도 -> 구군
+	$(".sido").on("change",function(){
+		var $sido = $(this).val();
+		$.post("/main/index/index_ajax.php",{type:"gugun",sido:$sido},function(data){
+			if(data)
+			{
+				$(".gugun").html(data);
+			}
+		});
+	});
+
+	$('#smit_aside').click(function(){
+		var quick_email_rule =  /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		var rq_name = $('#asidefrm input[name=rq_name]'),
+			rq_brand = $('#asidefrm select[name=rq_brand]'),
+			rq_age = $('#asidefrm input[name=rq_age]'),
+			rq_mail = $('#asidefrm input[name=rq_mail]'),
+			sido = $('#asidefrm select[name=sido]'),
+			gugun = $('#asidefrm select[name=gugun]'),
+			rq_tel = $('#asidefrm input[name=rq_tel]'),
+			// rq_tel2 = $('#asidefrm input[name=rq_tel2]'),
+			// rq_tel3 = $('#asidefrm input[name=rq_tel3]'),
+			mem_agree = $('#asidefrm input[name=mem_agree]');
+
+		if (rq_brand.val()=='')
+		{
+			alert('브랜드를 선택해주세요.');
+			return false;
+		}
+		if (rq_name.val()=='')
+		{
+			alert('성함을 입력해주세요.');
+			return false;
+		}
+
+        if (rq_tel.val()=='')
+		{
+			alert('연락처를 입력해주세요.');
+			return false;
+		}
+        if (rq_mail.val()=='')
+		{
+			alert('이메일을 입력해주세요.');
+			return false;
+		}
+		if(!quick_email_rule.test(rq_mail.val())){
+			alert("이메일을 형식에 맞게 입력해주세요.");
+			$("#quick_mail").focus();
+		  return false;
+		}
+
+		if (sido.val()=='')
+		{
+			alert('도/시를 선택해주세요.');
+			return false;
+		}
+
+		if (gugun.val()=='')
+		{
+			alert('구/군을 선택해주세요.');
+			return false;
+		}
+
+
+
+		if (mem_agree.is(':checked')==false)
+		{
+			alert('개인정보수집이용동의를 체크해주셔야합니다.');
+			return false;
+		}
+
+
+		$('#asidefrm').submit();
+	});
+
+});

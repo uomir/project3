@@ -1,0 +1,12 @@
+$(document).ready(function(){
+    $(".bxslider").bxSlider({
+        mode:'horizontal',
+        auto:true,
+        pager:true,
+        moveSlides:1,
+        infiniteLoop:true,
+        controls:false,
+        slidHeight:500,
+        speed:1000,
+    })
+})

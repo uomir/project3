@@ -1,0 +1,67 @@
+jQuery(function($){
+
+    //메인 슬라이드
+    $(".main-slide").slick({
+        arrows: false,
+        fade: false,
+        dots : true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnHover:false
+    });
+
+    $('.box1').click(function(){
+        location.href='/main/membership/app.php';
+    })
+    /*
+    $('.main-slide').on('beforeChange', function(event, slick, currentSlide ,nextSlide){
+        var $key = nextSlide;
+        $(".main-slide-nav li").removeClass("act");
+        $(".main-slide-nav li").eq($key).addClass("act");
+    });
+    $(".main-slide-nav li").click(function(){
+        var $key = $(this).index();
+        $(".main-slide .slick-dots li").eq($key).find("button").trigger("click");
+    });
+    $(".main-slide-nav li").eq(0).trigger("click");
+    */
+
+    $(".franchise-slide").slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        variableWidth: true
+    });
+    /*
+    $(".section03 .box").slick({
+        arrows: false,
+        fade: false,
+        dots : false
+    });
+    */
+    $(".coffees>a").hover(function(){
+        var $key=$(this).attr("data-object");
+        $(".coffees>div").removeClass("fadeOutUp");
+        $("."+$key).addClass("fadeInDown");
+    },function(){
+        var $key=$(this).attr("data-object");
+        $(".coffees>div").removeClass("fadeInDown");
+        $("."+$key).addClass("fadeOutUp");
+    });
+
+    $(window).scroll(function(){
+        var height = $(document).scrollTop(); // 스크롤 되는 높이
+        //console.log(height);
+
+        if(height > 870){
+            $("#aside").addClass("aside-fly");
+        }
+        else
+        {
+            $("#aside").removeClass("aside-fly");
+        }
+    });
+
+});
